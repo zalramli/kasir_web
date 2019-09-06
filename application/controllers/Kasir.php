@@ -13,11 +13,10 @@ class Kasir extends CI_Controller
     {
         $sql = $this->db->query("SELECT COUNT(*) as counts FROM tbl_pemesanan WHERE status='belum'");
         $data['jumlah'] = $sql->result();
-        $kategori = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $data['kategori'] = $this->m_kasir->get_kategori_all();
-        $data['produk'] = $this->m_kasir->get_produk_kategori($kategori);
+        $data['produk'] = $this->m_kasir->get_product_all();
         $this->load->view('kasir/home', $data);
     }
+    
     public function sukses()
     {
         $sql = $this->db->query("SELECT COUNT(*) as counts FROM tbl_pemesanan WHERE status='belum'");
@@ -57,7 +56,7 @@ class Kasir extends CI_Controller
             );
             $this->cart->update($data);
         }
-        redirect('kasir/cart');
+        redirect('kasir');
     }
     public function ubah_cart()
     {
@@ -77,7 +76,7 @@ class Kasir extends CI_Controller
             );
             $this->cart->update($data);
         }
-        redirect('kasir/cart');
+        redirect('kasir');
     }
     public function check_out()
     {

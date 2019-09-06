@@ -67,84 +67,17 @@ function format_ribuan($nilai)
             </span>
         </div>
     </nav>
-    <div class="container mt-3">
+    <div class="container-fluid mt-3">
         <div class="row">
-            <div class="col-4">
-                <div class="list-group">
-                    <a style="text-decoration:none" href="" class="list-group-item list-group-item-dark"><strong>KATEGORI</strong></a>
-                    <a style="text-decoration:none;color:black;" href="<?php echo base_url() ?>kasir/" class="list-group-item">Semua</a>
-                    <?php
-                    foreach ($kategori as $row) {
-                        ?>
-                        <a style="text-decoration:none;color:black;" href="<?php echo base_url() ?>kasir/index/<?php echo $row['id_kategori']; ?>" class="list-group-item"><?php echo $row['nama_kategori']; ?></a>
-                    <?php
-                }
-                ?>
-                </div><br>
+            <div class="col-7">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="list-group">
-                            <a style="text-decoration:none;" href="<?php echo base_url() ?>kasir/cart" class="list-group-item list-group-item-dark"><strong><i class="fas fa-shopping-cart"></i> KERANJANG BELANJA</strong></a>
-                            <?php
-
-                            $cart = $this->cart->contents();
-
-                            // If cart is empty, this will show below message.
-                            if (empty($cart)) {
-                                ?>
-                                <a class="list-group-item">Keranjang Belanja Kosong</a>
-                            <?php
-                        } else {
-                            echo "<table width='100%' class='table'>";
-
-                            $grand_total = 0;
-                            foreach ($cart as $item) {
-                                $grand_total += $item['subtotal'];
-                                ?>
-
-                                    <tr>
-                                        <td width="55%"><?php echo $item['name']; ?></td>
-                                        <td width="10%"><?php echo $item['qty']; ?></td>
-                                        <td width="35%" align="right"><?php echo number_format($item['subtotal'], 0, ",", "."); ?></td>
-                                    </tr>
-                                <?php
-                            }
-                            ?>
-
-                            <?php
-                        }
-                        ?>
-                            <tr>
-                                <td>
-                                    <?php
-                                    $grand_total = 0;
-                                    $cart = $this->cart->contents();
-                                    foreach ($cart as $item) {
-                                        $grand_total += $item['subtotal'];
-                                    };
-                                    if ($grand_total == 0) {
-                                        echo "";
-                                    } else {
-                                        $totals = number_format($grand_total, 0, ",", ".");
-                                        echo "<td colspan='4' align='right'>" . "Rp " . $totals . "</td>";
-                                    }
-                                    ?>
-                                </td>
-                            </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-8">
-                <div class=" row mt-3">
                         <?php
                         foreach ($produk as $item) {
                             ?>
                             <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                                 <div class="kotak">
                                     <form action="<?php echo base_url(); ?>kasir/tambah" method="post">
-                                        <img class="img-thumbnail card-img-top" src="<?= base_url() . 'uploads/' . $item['foto'] ?>" alt="Card image cap">
+                                        <img class="img-thumbnail card-img-top" src="<?= $item['foto'] ?>" alt="Card image cap">
                                         <div class="card-body">
                                             <h5 class="card-title text-center"><?= $item['nama_barang'] ?></h5>
                                             <p class="card-text">
@@ -177,6 +110,65 @@ function format_ribuan($nilai)
 
                     </div>
                 </div>
+            <div class="col-5">
+                <div class="list-group">
+                            <a style="text-decoration:none;" href="<?php echo base_url() ?>kasir/cart" class="list-group-item list-group-item-dark"><strong><i class="fas fa-shopping-cart"></i> KERANJANG BELANJA</strong></a>
+                            <form action="<?php echo base_url() ?>kasir/ubah_cart" method="post" name="frmShopping" enctype="multipart/form-data">
+                            <?php
+                            $cart = $this->cart->contents();
+
+                            // If cart is empty, this will show below message.
+                            if ($cart = $this->cart->contents()) {
+                                ?>
+                                <table width="100%" class="table table-sm">
+                            <thead class="">
+                            <tr>
+                                <th style="text-align: center;" width="1%">No</th>
+                                <th style="text-align: center;" width="53%">Nama</th>
+                                <th style="text-align: center;" width="20%">Jumlah</th>
+                                <th style="text-align: center;" width="25%">Total</th>
+                                <th style="text-align: center;" width="1%">Hapus</th>
+                            </tr>
+                            </thead>
+                        <tbody>
+                            <?php
+                            $grand_total = 0;
+                            $i = 1;
+                            foreach ($cart as $item) {
+                                $grand_total = $grand_total + $item['subtotal'];
+
+                                ?>
+                                <input type="hidden" name="cart[<?php echo $item['id']; ?>][id]" value="<?php echo $item['id']; ?>" />
+                                <input type="hidden" name="cart[<?php echo $item['id']; ?>][rowid]" value="<?php echo $item['rowid']; ?>" />
+                                <input type="hidden" name="cart[<?php echo $item['id']; ?>][name]" value="<?php echo $item['name']; ?>" />
+                                <input type="hidden" name="cart[<?php echo $item['id']; ?>][price]" value="<?php echo $item['price']; ?>" />
+                                <input type="hidden" name="cart[<?php echo $item['id']; ?>][foto]" value="<?php echo $item['foto']; ?>" />
+                                <input type="hidden" name="cart[<?php echo $item['id']; ?>][qty]" value="<?php echo $item['qty']; ?>" />
+                                <tr>
+                                    <td><?= $i++ ?></td>
+                                    <td><?= $item['name'] ?></td>
+                                    <td><input style="text-align: center;" type="text" class="form-control input-sm" name="cart[<?php echo $item['id']; ?>][qty]" value="<?php echo $item['qty']; ?>" /></td>
+                                    <td style="text-align: right;"><?php echo number_format($item['subtotal'], 0, ",", ".") ?></td>
+                                    <td style="text-align: center;"><a href="<?php echo base_url() ?>kasir/hapusCart/<?php echo $item['rowid']; ?>" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></a></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                    </form>
+
+                            <?php
+                        } else {
+                            echo '<a class="list-group-item">Keranjang Belanja Kosong</a>';
+                        }
+                        ?>
+                        </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        
+                    </div>
+                </div>
+            </div>
+            
             </div>
         </div>
         <a class="scroll-to-top rounded" href="#page-top">

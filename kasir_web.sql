@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 28, 2019 at 07:40 PM
--- Server version: 10.1.38-MariaDB-0ubuntu0.18.04.1
+-- Generation Time: 06 Sep 2019 pada 13.54
+-- Versi Server: 10.1.38-MariaDB-0ubuntu0.18.04.1
 -- PHP Version: 7.2.17-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -17,14 +17,14 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `lcc`
+-- Database: `kasir_web`
 --
 
 -- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `api_barang`
--- (See below for the actual view)
+-- (Lihat di bawah untuk tampilan aktual)
 --
 CREATE TABLE `api_barang` (
 `id_merk` varchar(8)
@@ -43,7 +43,7 @@ CREATE TABLE `api_barang` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_akun`
+-- Struktur dari tabel `tbl_akun`
 --
 
 CREATE TABLE `tbl_akun` (
@@ -55,7 +55,7 @@ CREATE TABLE `tbl_akun` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_akun`
+-- Dumping data untuk tabel `tbl_akun`
 --
 
 INSERT INTO `tbl_akun` (`id_akun`, `username`, `password`, `akses`, `id_user`) VALUES
@@ -65,7 +65,7 @@ INSERT INTO `tbl_akun` (`id_akun`, `username`, `password`, `akses`, `id_user`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_barang`
+-- Struktur dari tabel `tbl_barang`
 --
 
 CREATE TABLE `tbl_barang` (
@@ -81,7 +81,7 @@ CREATE TABLE `tbl_barang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_barang`
+-- Dumping data untuk tabel `tbl_barang`
 --
 
 INSERT INTO `tbl_barang` (`id_barang`, `nama_barang`, `foto`, `stok_real`, `stok_sementara`, `harga`, `deskripsi`, `id_kategori`, `id_merk`) VALUES
@@ -95,21 +95,7 @@ INSERT INTO `tbl_barang` (`id_barang`, `nama_barang`, `foto`, `stok_real`, `stok
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_chatting`
---
-
-CREATE TABLE `tbl_chatting` (
-  `id_pesan` int(11) NOT NULL,
-  `isi_pesan` int(11) NOT NULL,
-  `waktu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `id_pegawai` varchar(8) NOT NULL,
-  `id_pelanggan` varchar(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_jabatan`
+-- Struktur dari tabel `tbl_jabatan`
 --
 
 CREATE TABLE `tbl_jabatan` (
@@ -118,7 +104,7 @@ CREATE TABLE `tbl_jabatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_jabatan`
+-- Dumping data untuk tabel `tbl_jabatan`
 --
 
 INSERT INTO `tbl_jabatan` (`id_jabatan`, `nama_jabatan`) VALUES
@@ -132,7 +118,7 @@ INSERT INTO `tbl_jabatan` (`id_jabatan`, `nama_jabatan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_kategori`
+-- Struktur dari tabel `tbl_kategori`
 --
 
 CREATE TABLE `tbl_kategori` (
@@ -141,7 +127,7 @@ CREATE TABLE `tbl_kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_kategori`
+-- Dumping data untuk tabel `tbl_kategori`
 --
 
 INSERT INTO `tbl_kategori` (`id_kategori`, `nama_kategori`) VALUES
@@ -152,7 +138,7 @@ INSERT INTO `tbl_kategori` (`id_kategori`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_merk`
+-- Struktur dari tabel `tbl_merk`
 --
 
 CREATE TABLE `tbl_merk` (
@@ -162,7 +148,7 @@ CREATE TABLE `tbl_merk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_merk`
+-- Dumping data untuk tabel `tbl_merk`
 --
 
 INSERT INTO `tbl_merk` (`id_merk`, `nama_merk`, `foto_merk`) VALUES
@@ -176,7 +162,7 @@ INSERT INTO `tbl_merk` (`id_merk`, `nama_merk`, `foto_merk`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_pegawai`
+-- Struktur dari tabel `tbl_pegawai`
 --
 
 CREATE TABLE `tbl_pegawai` (
@@ -188,7 +174,7 @@ CREATE TABLE `tbl_pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_pegawai`
+-- Dumping data untuk tabel `tbl_pegawai`
 --
 
 INSERT INTO `tbl_pegawai` (`id_pegawai`, `nama_pegawai`, `alamat`, `no_hp`, `id_jabatan`) VALUES
@@ -200,7 +186,7 @@ INSERT INTO `tbl_pegawai` (`id_pegawai`, `nama_pegawai`, `alamat`, `no_hp`, `id_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_pelanggan`
+-- Struktur dari tabel `tbl_pelanggan`
 --
 
 CREATE TABLE `tbl_pelanggan` (
@@ -212,7 +198,7 @@ CREATE TABLE `tbl_pelanggan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_pelanggan`
+-- Dumping data untuk tabel `tbl_pelanggan`
 --
 
 INSERT INTO `tbl_pelanggan` (`id_pelanggan`, `nama_pelanggan`, `email`, `alamat`, `no_hp`) VALUES
@@ -234,7 +220,7 @@ INSERT INTO `tbl_pelanggan` (`id_pelanggan`, `nama_pelanggan`, `email`, `alamat`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_pemesanan`
+-- Struktur dari tabel `tbl_pemesanan`
 --
 
 CREATE TABLE `tbl_pemesanan` (
@@ -246,7 +232,7 @@ CREATE TABLE `tbl_pemesanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_pemesanan`
+-- Dumping data untuk tabel `tbl_pemesanan`
 --
 
 INSERT INTO `tbl_pemesanan` (`id_pemesanan`, `tanggal_pesan`, `tanggal_tenggang`, `status`, `id_pelanggan`) VALUES
@@ -256,7 +242,7 @@ INSERT INTO `tbl_pemesanan` (`id_pemesanan`, `tanggal_pesan`, `tanggal_tenggang`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_pemesanandetail`
+-- Struktur dari tabel `tbl_pemesanandetail`
 --
 
 CREATE TABLE `tbl_pemesanandetail` (
@@ -267,7 +253,7 @@ CREATE TABLE `tbl_pemesanandetail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_pemesanandetail`
+-- Dumping data untuk tabel `tbl_pemesanandetail`
 --
 
 INSERT INTO `tbl_pemesanandetail` (`id_detail`, `id_pemesanan`, `id_barang`, `jumlah`) VALUES
@@ -279,7 +265,7 @@ INSERT INTO `tbl_pemesanandetail` (`id_detail`, `id_pemesanan`, `id_barang`, `ju
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_transaksi`
+-- Struktur dari tabel `tbl_transaksi`
 --
 
 CREATE TABLE `tbl_transaksi` (
@@ -293,7 +279,7 @@ CREATE TABLE `tbl_transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_transaksi`
+-- Dumping data untuk tabel `tbl_transaksi`
 --
 
 INSERT INTO `tbl_transaksi` (`id_transaksi`, `tanggal`, `total_harga`, `total_bayar`, `total_kembalian`, `id_pegawai`, `id_pelanggan`) VALUES
@@ -315,7 +301,7 @@ INSERT INTO `tbl_transaksi` (`id_transaksi`, `tanggal`, `total_harga`, `total_ba
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_transaksidetail`
+-- Struktur dari tabel `tbl_transaksidetail`
 --
 
 CREATE TABLE `tbl_transaksidetail` (
@@ -327,7 +313,7 @@ CREATE TABLE `tbl_transaksidetail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_transaksidetail`
+-- Dumping data untuk tabel `tbl_transaksidetail`
 --
 
 INSERT INTO `tbl_transaksidetail` (`id_detail`, `id_transaksi`, `id_barang`, `qty`, `total_hrg`) VALUES
@@ -358,7 +344,7 @@ INSERT INTO `tbl_transaksidetail` (`id_detail`, `id_transaksi`, `id_barang`, `qt
 -- --------------------------------------------------------
 
 --
--- Structure for view `api_barang`
+-- Struktur untuk view `api_barang`
 --
 DROP TABLE IF EXISTS `api_barang`;
 
@@ -380,13 +366,6 @@ ALTER TABLE `tbl_akun`
 ALTER TABLE `tbl_barang`
   ADD PRIMARY KEY (`id_barang`),
   ADD KEY `id_kategori` (`id_kategori`,`id_merk`);
-
---
--- Indexes for table `tbl_chatting`
---
-ALTER TABLE `tbl_chatting`
-  ADD PRIMARY KEY (`id_pesan`),
-  ADD KEY `id_pegawai` (`id_pegawai`,`id_pelanggan`);
 
 --
 -- Indexes for table `tbl_jabatan`
@@ -450,11 +429,6 @@ ALTER TABLE `tbl_transaksidetail`
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `tbl_chatting`
---
-ALTER TABLE `tbl_chatting`
-  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tbl_pemesanandetail`
 --
